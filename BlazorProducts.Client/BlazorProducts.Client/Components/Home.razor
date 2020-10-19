@@ -1,17 +1,25 @@
 ﻿<div style="text-align:center">
-	<h1>
-		Welcome to the BlazorProducts.Client application.
+	<h1 style="color:@Color">
+		@Title
 	</h1>
 	<p>
 		Feel free to
-		<a href="https://www.redbubble.com/people/vpecanac/works/44764889-code-maze-merch?asc=u" target="_blank">visit our shop</a>
+		<a href="https://www.redbubble.com/people/vpecanac/works/44764889-code-maze-merch?asc=u" 
+		   target="_blank">visit our shop</a>
 		any time you want.
 	</p>
 	<p>
-		<img src="/assets/products.png" alt="products image for the Home component" class="img-fluid" />
+		<img @attributes="AdditionalAttributes" class="img-fluid" />
 	</p>
 </div>
-@code 
-{
-}
 
+@code {
+	[Parameter]
+	public string Title { get; set; }
+
+	[Parameter(CaptureUnmatchedValues = true)]
+	public Dictionary<string, object> AdditionalAttributes { get; set; }
+
+	[CascadingParameter(Name = "HeadingColor")]
+	public string Color { get; set; }
+}
