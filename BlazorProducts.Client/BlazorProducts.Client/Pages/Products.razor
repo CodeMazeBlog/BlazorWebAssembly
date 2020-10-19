@@ -2,8 +2,11 @@
 @using BlazorProducts.Client.Components
 
 <div class="row">
-	<div class="col-md-10">
-		@*Place for search and sort*@
+	<div class="col-md-5">
+		<Search OnSearchChanged="SearchChanged" />
+	</div>
+	<div class="col-md-5">
+		<Sort OnSortChanged="SortChanged" />
 	</div>
 	<div class="col-md-2">
 		<a class="btn btn-success mb-1" href="/createProduct">New Product</a>
@@ -16,6 +19,9 @@
 </div>
 <div class="row">
 	<div class="col">
-		@*Place for pagination*@
+		<Pagination MetaData="MetaData" Spread="1" SelectedPage="SelectedPage" />
+	</div>
+	<div class="col">
+		<PageSizeDropDown SelectedPageSize="SetPageSize" />
 	</div>
 </div>

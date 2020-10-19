@@ -26,7 +26,8 @@ namespace BlazorProducts.Server
                 policy.AddPolicy("CorsPolicy", opt => opt
                 .AllowAnyOrigin()
                 .AllowAnyHeader()
-                .AllowAnyMethod());
+                .AllowAnyMethod()
+                .WithExposedHeaders("X-Pagination"));
             });
 
             services.AddDbContext<ProductContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("sqlConnection")));
