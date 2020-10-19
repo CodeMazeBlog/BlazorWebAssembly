@@ -1,0 +1,46 @@
+﻿@using Microsoft.Extensions.Logging
+@implements IDisposable
+
+<h1>@Title</h1>
+
+<p>Current count: @CurrentCount</p>
+
+@code {
+
+	[Parameter]
+	public string Title { get; set; }
+
+	[Parameter]
+	public int CurrentCount { get; set; }
+
+	[Inject]
+	public ILogger<CounterPrint> Logger { get; set; }
+
+	protected override void OnInitialized()
+	{
+		Logger.Log(LogLevel.Information,$"OnInitialized => Title: {Title}, CurrentCount: {CurrentCount}");
+	}
+
+	protected override void OnParametersSet()
+	{
+		Logger.Log(LogLevel.Information,$"OnParameterSet => Title: {Title}, CurrentCount: {CurrentCount}");
+	}
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		if (firstRender)
+		{
+			Logger.Log(LogLevel.Information,"This is the first render of the component");
+		}
+	}
+
+	protected override bool ShouldRender()
+	{
+		return false;
+	}
+
+	public void Dispose()
+	{
+		Logger.Log(LogLevel.Information,"Component removed from the parnet's render tree.");
+	}
+}
