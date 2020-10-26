@@ -1,10 +1,12 @@
 ﻿using BlazorProducts.Client.Features;
 using Entities.Models;
 using Entities.RequestFeatures;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.WebUtilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -15,12 +17,14 @@ namespace BlazorProducts.Client.HttpRepository
 	public class ProductHttpRepository : IProductHttpRepository
 	{
 		private readonly HttpClient _client;
+		private readonly NavigationManager _navManager;
 		private readonly JsonSerializerOptions _options =
 			new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
-		public ProductHttpRepository(HttpClient client)
+		public ProductHttpRepository(HttpClient client, NavigationManager navManager)
 		{
 			_client = client;
+			_navManager = navManager;
 		}
 
 		public async Task<Product> GetProduct(Guid id)
@@ -44,10 +48,6 @@ namespace BlazorProducts.Client.HttpRepository
 				await _client.GetAsync(QueryHelpers.AddQueryString("products", queryStringParam));
 
 			var content = await response.Content.ReadAsStringAsync();
-			if(!response.IsSuccessStatusCode)
-			{
-				throw new ApplicationException(content);
-			}
 
 			var pagingResponse = new PagingResponse<Product>
 			{
