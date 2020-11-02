@@ -27,6 +27,9 @@ namespace BlazorProducts.Client.HttpRepository
 			_navManager = navManager;
 		}
 
+		public async Task CreateProduct(Product product)
+			=> await _client.PostAsJsonAsync("products", product);
+
 		public async Task<Product> GetProduct(Guid id)
 		{
 			var product = await _client.GetFromJsonAsync<Product>($"products/{id}");

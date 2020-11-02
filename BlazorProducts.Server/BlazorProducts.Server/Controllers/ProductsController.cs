@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using BlazorProducts.Server.Repository;
+using Entities.Models;
 using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -34,5 +35,18 @@ namespace BlazorProducts.Server.Controllers
             var product = await _repo.GetProduct(id);
             return Ok(product);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateProduct([FromBody]Product product)
+		{
+			if (product == null)
+				return BadRequest("Product has not been set");
+
+			//model validation
+
+			await _repo.CreateProduct(product);
+
+			return CreatedAtAction(nameof(GetProduct), new { id = product.Id }, product);
+		}
     }
 }
