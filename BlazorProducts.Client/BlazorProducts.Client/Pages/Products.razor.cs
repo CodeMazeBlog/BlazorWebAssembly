@@ -66,6 +66,16 @@ namespace BlazorProducts.Client.Pages
 			await GetProducts();
 		}
 
+		private async Task DeleteProduct(Guid id)
+		{
+			await ProductRepo.DeleteProduct(id);
+
+			if (_productParameters.PageNumber > 1 && ProductList.Count == 1)
+				_productParameters.PageNumber--;
+
+			await GetProducts();
+		}
+
 		public void Dispose() => Interceptor.DisposeEvent();
 	}
 }

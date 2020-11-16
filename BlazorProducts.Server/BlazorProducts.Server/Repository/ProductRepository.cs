@@ -39,5 +39,22 @@ namespace BlazorProducts.Server.Repository
             _context.Add(product);
             await _context.SaveChangesAsync();
 		}
+        
+		public async Task UpdateProduct(Product product, Product dbProduct)
+		{
+            dbProduct.Name = product.Name;
+            dbProduct.Price = product.Price;
+            dbProduct.ImageUrl = product.ImageUrl;
+            dbProduct.Supplier = product.Supplier;
+            dbProduct.Description = product.Description;
+
+            await _context.SaveChangesAsync();
+		}
+
+		public async Task DeleteProduct(Product product)
+		{
+            _context.Remove(product);
+            await _context.SaveChangesAsync();
+		}
 	}
 }
