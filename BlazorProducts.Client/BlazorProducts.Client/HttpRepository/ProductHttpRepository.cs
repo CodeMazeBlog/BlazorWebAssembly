@@ -1,8 +1,11 @@
 ﻿using BlazorProducts.Client.Features;
+using Entities.Configuration;
 using Entities.Models;
 using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,13 +22,16 @@ namespace BlazorProducts.Client.HttpRepository
 	{
 		private readonly HttpClient _client;
 		private readonly NavigationManager _navManager;
+		private readonly ApiConfiguration _apiConfiguration;
 		private readonly JsonSerializerOptions _options =
 			new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
-		public ProductHttpRepository(HttpClient client, NavigationManager navManager)
+		public ProductHttpRepository(HttpClient client, NavigationManager navManager,
+			IOptions<ApiConfiguration> configuration)
 		{
 			_client = client;
 			_navManager = navManager;
+			_apiConfiguration = configuration.Value;
 		}
 
 		public async Task CreateProduct(Product product)
@@ -67,7 +73,8 @@ namespace BlazorProducts.Client.HttpRepository
 		{
 			var postResult = await _client.PostAsync("upload", content);
 			var postContent = await postResult.Content.ReadAsStringAsync();
-			var imgUrl = Path.Combine("https://localhost:5011/", postContent);
+			var imgUrl = 
+				Path.Combine(_apiConfiguration.BaseAddress, postContent);
 
 			return imgUrl;
 		}
