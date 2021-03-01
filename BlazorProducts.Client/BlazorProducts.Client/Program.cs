@@ -1,6 +1,7 @@
 using Blazored.Toast;
 using BlazorProducts.Client.HttpInterceptor;
 using BlazorProducts.Client.HttpRepository;
+using BlazorProducts.Client.Toastr.Services;
 using Entities.Configuration;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -46,6 +47,8 @@ namespace BlazorProducts.Client
 
 			builder.Services.Configure<ApiConfiguration>
 				(builder.Configuration.GetSection("ApiConfiguration"));
+
+			builder.Services.AddBlazorToastr();
 
 			await builder.Build().RunAsync();
 		}

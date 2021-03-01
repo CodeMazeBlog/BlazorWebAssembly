@@ -1,0 +1,91 @@
+﻿@page "/jsinterop"
+
+<h3>JS Interop in Blazor WebAssembly</h3>
+<br />
+
+<div class="row">
+	<div class="col-md-4">
+		<h4>
+			Example for calling a JS function returning void:
+		</h4>
+	</div>
+	<div class="col-md-6">
+		<button type="button" class="btn btn-info" @onclick="ShowAlertWindow">
+			Show Alert Window
+		</button>
+	</div>
+</div>
+<hr />
+
+<div class="row">
+	<div class="col-md-4">
+		<h4>
+			Example for calling a JS function returning a result:
+		</h4>
+	</div>
+	<div class="col-md-2">
+		<button type="button" class="btn btn-info" @onclick="RegisterEmail">
+			Register Email
+		</button>
+	</div>
+	<div class="col-md-4">
+		@_registrationResult
+	</div>
+</div>
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<h4>
+			Calling a JS function that returns an object:
+		</h4>
+	</div>
+	<div class="col-md-2">
+		<button type="button" class="btn btn-info" @onclick="ExtractEmailDetails">
+			Email Details
+		</button>
+	</div>
+	<div class="col-md-4">
+		@_messageDetails
+	</div>
+</div>
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<h4>
+			Passing HTML Reference to JS Function:
+		</h4>
+	</div>
+	<div class="col-md-4">
+		<input type="text" @ref="_elRef" class="form-control" />
+	</div>
+	<div class="col-md-4">
+		<button type="button" class="btn btn-info" @onclick="FocusAndStyleElement">
+			Focus
+		</button>
+	</div>
+</div>
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<h4>
+			Passing Input Component to JS Function
+		</h4>
+	</div>
+	<div class="col-md-4">
+		<EditForm Model="_emailDetails">
+			<InputText id="dummyInputComponent" class="form-control" 
+					   @bind-Value="_emailDetails.Name"/>
+		</EditForm>
+	</div>
+	<div class="col-md-4">
+		<button type="button" class="btn btn-info" @onclick="FocusAndStyleInputComponent">
+			Focus
+		</button>
+	</div>
+</div>
+<hr />
+<div class="row">
+	<div class="col alert alert-danger">
+		@_errorMessage
+	</div>
+</div>
