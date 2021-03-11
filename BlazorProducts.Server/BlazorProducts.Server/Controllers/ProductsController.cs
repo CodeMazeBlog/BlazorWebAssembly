@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 using BlazorProducts.Server.Repository;
 using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace BlazorProducts.Server.Controllers
 {
@@ -23,7 +23,7 @@ namespace BlazorProducts.Server.Controllers
         {
             var products = await _repo.GetProducts(productParameters);
 
-            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(products.MetaData));
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(products.MetaData));
 
 			return Ok(products);
 		}
