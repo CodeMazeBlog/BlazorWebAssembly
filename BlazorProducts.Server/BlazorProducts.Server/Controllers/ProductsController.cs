@@ -4,12 +4,14 @@ using System.Threading.Tasks;
 using BlazorProducts.Server.Repository;
 using Entities.Models;
 using Entities.RequestFeatures;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorProducts.Server.Controllers
 {
 	[Route("api/products")]
 	[ApiController]
+	[Authorize]
 	public class ProductsController : ControllerBase
 	{
 		private readonly IProductRepository _repo;

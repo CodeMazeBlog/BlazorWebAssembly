@@ -1,8 +1,11 @@
+using Blazored.LocalStorage;
 using Blazored.Toast;
+using BlazorProducts.Client.AuthProviders;
 using BlazorProducts.Client.HttpInterceptor;
 using BlazorProducts.Client.HttpRepository;
 using BlazorProducts.Client.Toastr.Services;
 using Entities.Configuration;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -49,6 +52,13 @@ namespace BlazorProducts.Client
 				(builder.Configuration.GetSection("ApiConfiguration"));
 
 			builder.Services.AddBlazorToastr();
+			builder.Services.AddBlazoredLocalStorage();
+
+			builder.Services.AddAuthorizationCore();
+			builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
+
+			builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+			builder.Services.AddScoped<RefreshTokenService>();
 
 			await builder.Build().RunAsync();
 		}

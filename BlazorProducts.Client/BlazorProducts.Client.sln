@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorProducts.Client", "Bl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "..\BlazorProducts.Server\Entities\Entities.csproj", "{8B22C8FD-5C5D-4918-8409-0FCC6160B9E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorProducts.Client.Toastr", "BlazorProducts.Client.Toastr\BlazorProducts.Client.Toastr.csproj", "{6B48391F-6DCA-400C-9B99-8B1AE59C6361}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorProducts.Client.Toastr", "BlazorProducts.Client.Toastr\BlazorProducts.Client.Toastr.csproj", "{6B48391F-6DCA-400C-9B99-8B1AE59C6361}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

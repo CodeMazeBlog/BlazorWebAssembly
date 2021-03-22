@@ -1,15 +1,33 @@
 ﻿@page "/counter"
 @using BlazorProducts.Client.Components
+@using System.Security.Claims
 
+<AuthorizeView>
+    <Authorized>
+        The user: @context.User.FindFirst(ClaimTypes.Name).Value is authorized
+    </Authorized>
+    <NotAuthorized>
+        The user is not authorized
+    </NotAuthorized>
+</AuthorizeView>
 <CounterPrint CurrentCount="currentCount" Title="Counter" />
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
-    private int currentCount = 0;
+	private int currentCount = 0;
 
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
+	[CascadingParameter]
+	public Task<AuthenticationState> AuthState { get; set; }
+
+	private async void IncrementCount()
+	{
+		var authState = await AuthState;
+		var user = authState.User;
+
+		if (user.Identity.IsAuthenticated)
+			currentCount++;
+		else
+			currentCount--;
+	}
 }
