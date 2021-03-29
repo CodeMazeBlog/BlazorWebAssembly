@@ -1,0 +1,28 @@
+﻿@page "/twostepverification"
+
+<h3>Login Verification</h3>
+
+@if (_showError)
+{
+	<div class="alert alert-danger" role="alert">
+		@_error
+	</div>
+}
+
+<EditForm Model="_twoFactorDto" OnValidSubmit="Submit" 
+		  class="card card-body bg-light mt-5">
+	<DataAnnotationsValidator />
+	<div class="form-group row">
+		<label for="token" class="col-md-2 col-form-label">Token:</label>
+		<div class="col-md-10">
+			<InputText type="text" id="token" class="form-control" 
+					   @bind-Value="_twoFactorDto.TwoFactorToken" />
+			<ValidationMessage For="@(() => _twoFactorDto.TwoFactorToken)" />
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 text-right">
+			<button type="submit" class="btn btn-success">Submit</button>
+		</div>
+	</div>
+</EditForm>

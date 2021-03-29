@@ -19,6 +19,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\resources\EmailService\EmailService.csproj" />
 		<ProjectReference Include="..\Entities\Entities.csproj" />
 	</ItemGroup>
 

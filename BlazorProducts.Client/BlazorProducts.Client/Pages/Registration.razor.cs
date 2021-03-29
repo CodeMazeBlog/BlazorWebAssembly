@@ -33,7 +33,7 @@ namespace BlazorProducts.Client.Pages
 			}
 			else
 			{
-				NavigationManager.NavigateTo("/");
+				NavigationManager.NavigateTo("/login");
 			}
 		}
 	}

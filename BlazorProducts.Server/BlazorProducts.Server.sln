@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30516.212
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorProducts.Server", "BlazorProducts.Server\BlazorProducts.Server.csproj", "{31A916BE-163D-473F-B70E-D2B92BCB7FFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorProducts.Server", "BlazorProducts.Server\BlazorProducts.Server.csproj", "{31A916BE-163D-473F-B70E-D2B92BCB7FFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{4A4124DE-12CD-4171-BA25-794F3C56A842}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{4A4124DE-12CD-4171-BA25-794F3C56A842}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailService", "..\resources\EmailService\EmailService.csproj", "{FD50040F-F899-4ACA-8221-529FE34BCBBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{4A4124DE-12CD-4171-BA25-794F3C56A842}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A4124DE-12CD-4171-BA25-794F3C56A842}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A4124DE-12CD-4171-BA25-794F3C56A842}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD50040F-F899-4ACA-8221-529FE34BCBBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD50040F-F899-4ACA-8221-529FE34BCBBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD50040F-F899-4ACA-8221-529FE34BCBBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD50040F-F899-4ACA-8221-529FE34BCBBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

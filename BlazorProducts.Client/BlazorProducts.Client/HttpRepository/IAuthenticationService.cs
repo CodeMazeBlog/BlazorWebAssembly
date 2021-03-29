@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace BlazorProducts.Client.HttpRepository
@@ -12,5 +13,9 @@ namespace BlazorProducts.Client.HttpRepository
 		Task<AuthResponseDto> Login(UserForAuthenticationDto userForAuthentication);
 		Task Logout();
 		Task<string> RefreshToken();
+		Task<HttpStatusCode> ForgotPassword(ForgotPasswordDto forgotPasswordDto);
+		Task<ResetPasswordResponseDto> ResetPassword(ResetPasswordDto resetPasswordDto);
+		Task<HttpStatusCode> EmailConfirmation(string email, string token);
+		Task<AuthResponseDto> LoginVerification(TwoFactorVerificationDto twoFactorDto);
 	}
 }

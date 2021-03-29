@@ -1,0 +1,17 @@
+﻿@page "/emailconfirmation"
+
+<h3>EmailConfirmation</h3>
+
+@if (_showError)
+{
+	<div class="alert alert-danger" role="alert">
+		Email confirmation failed.
+	</div>
+}
+
+@if (_showSuccess)
+{
+	<div class="alert alert-success" role="alert">
+		Your email has been confirmed
+	</div>
+}

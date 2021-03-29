@@ -1,6 +1,7 @@
 using BlazorProducts.Server.Context;
 using BlazorProducts.Server.Repository;
 using BlazorProducts.Server.Services;
+using EmailService;
 using Entities.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.IO;
 using System.Text;
 
@@ -43,8 +45,16 @@ namespace BlazorProducts.Server
 
 			services.AddScoped<IProductRepository, ProductRepository>();
 
-			services.AddIdentity<User, IdentityRole>()
-				.AddEntityFrameworkStores<ProductContext>();
+			services.AddIdentity<User, IdentityRole>(opt =>
+			{
+				opt.Lockout.AllowedForNewUsers = true;
+				opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(2);
+				opt.Lockout.MaxFailedAccessAttempts = 3;
+			})
+			.AddEntityFrameworkStores<ProductContext>()
+			.AddDefaultTokenProviders();
+			services.Configure<DataProtectionTokenProviderOptions>(opt =>
+				opt.TokenLifespan = TimeSpan.FromHours(2));
 
 			var jwtSettings = Configuration.GetSection("JWTSettings");
 			services.AddAuthentication(opt =>
@@ -69,6 +79,11 @@ namespace BlazorProducts.Server
 
 			services.Configure<JwtConfiguration>(Configuration.GetSection("JWTSettings"));
 			services.AddScoped<IAuthenticationService, AuthenticationService>();
+
+			var emailConfig = Configuration.GetSection("EmailConfiguration")
+				.Get<EmailConfiguration>();
+			services.AddSingleton(emailConfig);
+			services.AddScoped<IEmailSender, EmailSender>();
 
 			services.AddControllers();
 
