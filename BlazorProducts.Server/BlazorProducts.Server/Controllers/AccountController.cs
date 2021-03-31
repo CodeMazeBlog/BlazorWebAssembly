@@ -50,6 +50,7 @@ namespace BlazorProducts.Server.Controllers
 				return BadRequest(new ResponseDto { Errors = errors });
 			}
 
+			await _userManager.SetTwoFactorEnabledAsync(user, true);
 			var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
 			var param = new Dictionary<string, string>
@@ -66,8 +67,6 @@ namespace BlazorProducts.Server.Controllers
 			await _emailSender.SendEmailAsync(message);
 
 			await _userManager.AddToRoleAsync(user, "Viewer");
-
-			await _userManager.SetTwoFactorEnabledAsync(user, true);
 
 			return StatusCode(201);
 		}
