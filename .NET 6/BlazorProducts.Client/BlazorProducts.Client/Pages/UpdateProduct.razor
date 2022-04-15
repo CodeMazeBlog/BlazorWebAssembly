@@ -1,0 +1,61 @@
+﻿@page "/updateProduct/{id:guid}"
+
+<h2>Update Product Form</h2>
+
+@if (_product != null)
+{
+
+	<EditForm EditContext="_editContext" OnValidSubmit="Update" class="card card-body bg-light mt-5">
+		<DataAnnotationsValidator />
+
+		<div class="mb-3 row">
+			<label for="name" class="col-md-2 col-form-label">Name:</label>
+			<div class="col-md-10">
+				<InputText id="name" class="form-control" @bind-Value="_product.Name" />
+				<ValidationMessage For="@(() => _product.Name)" />
+			</div>
+		</div>
+		<div class="mb-3 row">
+			<label for="description" class="col-md-2 col-form-label">Description:</label>
+			<div class="col-md-10">
+				<InputTextArea id="description" class="form-control"
+							   @bind-Value="_product.Description" />
+				<ValidationMessage For="@(() => _product.Description)" />
+			</div>
+		</div>
+		<div class="mb-3 row">
+			<label for="supplier" class="col-md-2 col-form-label">Supplier:</label>
+			<div class="col-md-10">
+				<InputText id="supplier" class="form-control" @bind-Value="_product.Supplier" />
+				<ValidationMessage For="@(() => _product.Supplier)" />
+			</div>
+		</div>
+		<div class="mb-3 row">
+			<label for="price" class="col-md-2 col-form-label">Price:</label>
+			<div class="col-md-10">
+				<InputNumber id="price" class="form-control" @bind-Value="_product.Price" />
+				<ValidationMessage For="@(() => _product.Price)" />
+			</div>
+		</div>
+		<div class="mb-3 row">
+			<label for="image" class="col-md-2 col-form-label">Image:</label>
+			<div class="col-md-10">
+				<ImageUpload OnChange="AssignImageUrl" ImgUrl="@_product.ImageUrl" />
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<button type="submit" class="btn btn-success float-end"
+						disabled="@formInvalid">
+					Update
+				</button>
+			</div>
+		</div>
+	</EditForm>
+	<br />
+	<div class="row">
+		<div class="col">
+			<a href="/products" class="btn btn-success">Back</a>
+		</div>
+	</div>
+}
