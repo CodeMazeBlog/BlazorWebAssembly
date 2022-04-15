@@ -1,0 +1,12 @@
+﻿.product-image {
+	width:  100%;
+}
+
+.product-title {
+	color: #007bff;
+}
+
+.product-description {
+	font-style: italic;
+	white-space: pre-line;
+}

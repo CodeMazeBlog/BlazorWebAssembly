@@ -1,0 +1,41 @@
+﻿@page "/product/{productId:guid}"
+
+<div class="card">
+	<div class="card-body">
+		<div class="row">
+			<div class="col">
+				<h2>@Product.Name</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<img class="product-image" src="@Product.ImageUrl" alt="@Product.Name" />
+			</div>
+			<div class="col-md-8">
+				<div class="row">
+					<div class="col">
+						<h3 class="product-title">Price: $@String.Format("{0:0.00}", Product.Price)</h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<span class="product-description">
+							@Product.Description
+						</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<strong>Supplier:</strong> @Product.Supplier
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br />
+<div class="row">
+	<div class="col">
+		<a href="/products" class="btn btn-success">Back</a>
+	</div>
+</div>
