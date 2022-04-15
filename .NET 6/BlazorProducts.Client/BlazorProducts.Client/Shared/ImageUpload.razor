@@ -1,0 +1,14 @@
+﻿<InputFile OnChange="@HandleSelected" style="display:none;" id="file-upload"/>
+
+<button type="button" class="btn btn-info"
+		onclick="document.getElementById('file-upload').click()">
+	Select a File
+</button>
+<span class="image-name">@_fileUploadMessage</span>
+
+@if(ImgUrl != null)
+{
+	<div>
+		<img src="@ImgUrl" class="image-preview" />
+	</div>
+}
