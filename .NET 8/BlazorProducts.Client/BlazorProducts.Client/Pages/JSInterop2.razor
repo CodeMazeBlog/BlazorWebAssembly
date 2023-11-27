@@ -1,0 +1,59 @@
+﻿@page "/jsinterop2"
+
+<h2>Call .NET From JavaScript</h2>
+<br />
+
+<div class="row">
+	<div class="col-md-4">
+		<h4>
+			Calling static method from JS:
+		</h4>
+	</div>
+	<div class="col-md-2">
+		<button type="button" class="btn btn-info"
+				onclick="jsFunctions.calculateSquareRoot()">
+			Calculate
+		</button>
+	</div>
+	<div class="col-md-4">
+		<span id="string-result" class="form-text"></span>
+	</div>
+</div>
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<h4>
+			Calling static method from JS with Custom Identifier:
+		</h4>
+	</div>
+	<div class="col-md-2">
+		<button type="button" class="btn btn-info"
+				onclick="jsFunctions.calculateSquareRootJustResult()">
+			Calculate
+		</button>
+	</div>
+	<div class="col-md-4">
+		<span id="result" class="form-text"></span>
+	</div>
+</div>
+<hr />
+
+<div class="row">
+	<div class="col-md-4">
+		<h4>
+			Calling instance method from JS:
+		</h4>
+	</div>
+	<div class="col-md-2">
+		<button type="button" class="btn btn-info"
+				@onclick="SendDotNetInstanceToJS">
+			Get Mouse Coordinates
+		</button>
+	</div>
+	<div class="col-md-4">
+		<div id="coordinates" class="coordinates">
+			@_coordinates.X - @_coordinates.Y
+		</div>
+	</div>
+</div>
+<hr />

@@ -1,0 +1,32 @@
+﻿@using Blazored.Toast.Configuration
+@using BlazorProducts.Client.Components
+
+@inherits LayoutComponentBase
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <AuthLinks />
+        </div>
+
+        <article class="content px-4">
+           <CascadingValue Name="HeadingColor" Value="@_color">
+				@Body
+			</CascadingValue>
+        </article>
+    </main>
+
+    <BlazoredToasts Position="ToastPosition.TopRight"
+                    Timeout="10"
+                    IconType="IconType.FontAwesome"
+                    SuccessIcon="oi oi-thumb-up"
+                    ErrorIcon="oi oi-bug" />
+</div>
+@code
+{
+	private readonly string _color = "#0505b5";
+}
