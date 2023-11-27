@@ -1,0 +1,30 @@
+﻿@using Blazored.Toast.Configuration
+@inherits LayoutComponentBase
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        </div>
+
+        <article class="content px-4">
+           <CascadingValue Name="HeadingColor" Value="@_color">
+				@Body
+			</CascadingValue>
+        </article>
+    </main>
+
+    <BlazoredToasts Position="ToastPosition.TopRight"
+                    Timeout="10"
+                    IconType="IconType.FontAwesome"
+                    SuccessIcon="oi oi-thumb-up"
+                    ErrorIcon="oi oi-bug" />
+</div>
+@code
+{
+	private readonly string _color = "#0505b5";
+}
