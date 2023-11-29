@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\BlazorProducts.Server\Entities\Entities.csproj" />
+    <ProjectReference Include="..\BlazorProducts.Client.Toastr\BlazorProducts.Client.Toastr.csproj" />
   </ItemGroup>
 
   <ItemGroup>
